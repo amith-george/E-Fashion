@@ -1,7 +1,18 @@
 .navbarWrapper {
-  position: relative;
+  position: sticky;
+  top: 0;
   width: 100%;
   z-index: 100;
+  transition: transform 0.3s ease-in-out;
+  will-change: transform;
+}
+
+.hide {
+  transform: translateY(-100%);
+}
+
+.show {
+  transform: translateY(0%);
 }
 
 .linkContainer {
@@ -41,90 +52,25 @@
   left: 0;
   background: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem 1.5rem;
   display: flex;
-  padding: 0rem 2rem;
+  gap: 1rem;
+  border-radius: 4px;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
-  z-index: 10;
-  border-radius: 4px;
-  min-width: 1000px;
-  max-width: 1200px;
+  min-width: clamp(320px, 80vw, 1000px);
+  user-select: none;
+  z-index: 5;
 }
 
-.visible {
+.dropdownPanel.visible {
   opacity: 1;
   pointer-events: auto;
 }
 
 .grayBackground {
-  background-color: #fafafa;
+  background-color: #f9fafb;
+  border-radius: 4px;
+  padding: 0.5rem;
 }
-
-/* RESPONSIVE RULES */
-@media (max-width: 1024px) {
-  .responsiveLinks {
-    display: none;
-  }
-
-  .searchContainer {
-    max-width: 200px;
-  }
-}
-
-@media (max-width: 768px) {
-  .searchInput {
-    width: 180px !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .searchInput {
-    width: 130px !important;
-  }
-}
-
-/* Search bar sizing */
-.searchInput {
-  width: 400px;
-  transition: width 0.3s ease;
-}
-
-/* Medium screens: shrink */
-@media (max-width: 1024px) {
-  .searchInput {
-    width: 300px;
-  }
-}
-
-/* Tablets and small laptops */
-@media (max-width: 768px) {
-  .searchInput {
-    width: 220px;
-  }
-}
-
-/* Mobile phones */
-@media (max-width: 500px) {
-  .searchInput {
-    width: 150px;
-  }
-}
-
-/* Scroll-based hide/show transitions */
-.navbarWrapper {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  transition: transform 0.3s ease-in-out;
-  will-change: transform;
-}
-
-.hide {
-  transform: translateY(-100%);
-}
-
-.show {
-  transform: translateY(0%);
-}
-
