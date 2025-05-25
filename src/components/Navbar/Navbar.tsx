@@ -142,7 +142,7 @@ export default function Navbar() {
             <input
               type="text"
               placeholder="Search for products, brands and more..."
-              className="ml-2 border-none outline-none text-sm placeholder-gray-500"
+              className="ml-2 border-none outline-none text-sm placeholder-gray-500 text-black"
               style={{ width: "clamp(150px,30vw,350px)" }}
             />
           </div>
