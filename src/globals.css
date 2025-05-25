@@ -33,3 +33,8 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+}
