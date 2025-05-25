@@ -40,12 +40,10 @@ export default function Category() {
 
   return (
     <section className="w-full mt-21 pb-34 px-4">
-      {/* Heading */}
       <h2 className={`${cinzel.className} text-6xl font-bolder tracking-widest text-black mb-20 text-center`}>
         Shop By Category
       </h2>
 
-      {/* Scrollable container on small screens */}
       <div
         ref={containerRef}
         className={`${
@@ -54,15 +52,13 @@ export default function Category() {
             : "flex flex-wrap justify-center gap-10 px-[6vw]"
         }`}
       >
-        {categories.map(({ name, src }, index) => (
+        {categories.map(({ name, src }) => (
           <div
             key={name}
             role="button"
             tabIndex={0}
             className={`${
-              isSmallScreen
-                ? "flex-shrink-0 snap-start w-[220px]"
-                : "w-[250px]"
+              isSmallScreen ? "flex-shrink-0 snap-start w-[220px]" : "w-[250px]"
             } bg-red-300 rounded-sm overflow-hidden shadow-md cursor-pointer`}
             onClick={() => {}}
             onKeyDown={(e) => {
@@ -71,7 +67,6 @@ export default function Category() {
               }
             }}
           >
-            {/* Image section */}
             <div className="bg-red-400 pt-[6px] px-[6px]">
               <div className="relative w-full h-[280px] bg-white">
                 <Image
@@ -84,7 +79,6 @@ export default function Category() {
               </div>
             </div>
 
-            {/* Bottom label */}
             <div className={`bg-red-400 text-white text-center py-2 ${cinzel.className}`}>
               <p className="text-xl md:text-2xl font-semibold">{name}</p>
               <p className="mt-2 text-base md:text-lg font-medium">Shop Now</p>

@@ -11,7 +11,6 @@ export default function Trending() {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const [visibleProductIds, setVisibleProductIds] = useState<Set<string>>(new Set());
-  const [hoveredProductIds, setHoveredProductIds] = useState<Set<string>>(new Set());
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
   const [cardWidth, setCardWidth] = useState(0);
@@ -66,7 +65,7 @@ export default function Trending() {
     };
 
     if (cardRef.current) {
-      const gap = 32; // Tailwind gap-x-8 = 2rem = 32px
+      const gap = 32; // Tailwind gap-x-8
       setCardWidth(cardRef.current.offsetWidth + gap);
     }
 
@@ -82,7 +81,9 @@ export default function Trending() {
 
   const arrowButtonClasses = (side: "left" | "right") =>
     `absolute top-1/2 ${side === "left" ? "left-0" : "right-0"} transform -translate-y-1/2 z-20 p-4 transition ${
-      isSmallScreen ? "border-none bg-transparent text-transparent cursor-default" : "border border-black bg-white hover:bg-black hover:text-white text-black"
+      isSmallScreen
+        ? "border-none bg-transparent text-transparent cursor-default"
+        : "border border-black bg-white hover:bg-black hover:text-white text-black"
     }`;
 
   return (
@@ -124,9 +125,7 @@ export default function Trending() {
           >
             <ProductCard
               product={product}
-              canHover={!isSmallScreen && visibleProductIds.has(product.id) && hoveredProductIds.size < 3}
-              hoveredProductIds={hoveredProductIds}
-              setHoveredProductIds={setHoveredProductIds}
+              canHover={!isSmallScreen && visibleProductIds.has(product.id)}
               isSmallScreen={isSmallScreen}
             />
           </div>
@@ -139,12 +138,10 @@ export default function Trending() {
 type ProductCardProps = {
   product: typeof trendingProducts[0];
   canHover: boolean;
-  hoveredProductIds: Set<string>;
-  setHoveredProductIds: React.Dispatch<React.SetStateAction<Set<string>>>;
   isSmallScreen: boolean;
 };
 
-function ProductCard({ product, canHover, hoveredProductIds, setHoveredProductIds, isSmallScreen }: ProductCardProps) {
+function ProductCard({ product, canHover, isSmallScreen }: ProductCardProps) {
   const productImages = Object.entries(product.images).map(([id, src]) => ({
     id,
     src,
@@ -159,17 +156,11 @@ function ProductCard({ product, canHover, hoveredProductIds, setHoveredProductId
   const handleMouseEnter = () => {
     if (canHover) {
       setHovered(true);
-      setHoveredProductIds((prev) => new Set(prev).add(product.id));
     }
   };
 
   const handleMouseLeave = () => {
     setHovered(false);
-    setHoveredProductIds((prev) => {
-      const next = new Set(prev);
-      next.delete(product.id);
-      return next;
-    });
     setMainImageId(productImages.find((img) => img.id === "front")?.id ?? productImages[0].id);
   };
 
@@ -179,12 +170,9 @@ function ProductCard({ product, canHover, hoveredProductIds, setHoveredProductId
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Hover border */}
       {hovered && !isSmallScreen && (
         <div className="absolute top-0 left-0 w-full h-full z-30 pointer-events-none">
-          {/* Top border for image */}
           <div className="absolute top-0 left-0 right-0 border-t-[1px] border-l-[1px] border-r-[1px] border-black h-[450px]" />
-          {/* Bottom border for white container */}
           <div className="absolute top-[450px] left-0 right-0 border-l-[1px] border-r-[1px] border-b-[1px] border-black h-[160px]" />
         </div>
       )}
