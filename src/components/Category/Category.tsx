@@ -48,9 +48,10 @@ export default function Category() {
         ref={containerRef}
         className={`${
           isSmallScreen
-            ? "flex gap-6 overflow-x-auto no-scrollbar scroll-smooth touch-pan-x snap-x snap-mandatory px-4"
+            ? "flex gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory px-4"
             : "flex flex-wrap justify-center gap-10 px-[6vw]"
         }`}
+        style={isSmallScreen ? { touchAction: "pan-y", WebkitOverflowScrolling: "touch" } : undefined}
       >
         {categories.map(({ name, src }) => (
           <div
