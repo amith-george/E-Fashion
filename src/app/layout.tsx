@@ -1,5 +1,6 @@
 import "@/globals.css";
 import type { Metadata } from "next";
+import Head from "next/head";
 import Layout from "@/components/Layout/Layout";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -12,9 +13,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <head>
+      <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </head>
+      </Head>
       <body>
         <Layout>{children}</Layout>
         <SpeedInsights />
