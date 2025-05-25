@@ -1,6 +1,7 @@
 import "@/globals.css";
 import type { Metadata } from "next";
 import Layout from "@/components/Layout/Layout";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "E-Fashion",
@@ -12,6 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <Layout>{children}</Layout>
+        <SpeedInsights />
       </body>
     </html>
   );
