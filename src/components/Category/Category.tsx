@@ -51,7 +51,7 @@ export default function Category() {
             ? "flex gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory px-4"
             : "flex flex-wrap justify-center gap-10 px-[6vw]"
         }`}
-        style={isSmallScreen ? { touchAction: "pan-y", WebkitOverflowScrolling: "touch" } : undefined}
+        style={isSmallScreen ? { touchAction: "auto", WebkitOverflowScrolling: "touch" } : undefined}
       >
         {categories.map(({ name, src }) => (
           <div

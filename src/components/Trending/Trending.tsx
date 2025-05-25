@@ -115,8 +115,8 @@ export default function Trending() {
 
         <div
           ref={containerRef}
-          className="flex gap-x-8 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory touch-pan-y"
-          style={{ WebkitOverflowScrolling: "touch" }}
+          className="flex gap-x-8 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory px-4"
+          style={{ touchAction: "auto", WebkitOverflowScrolling: "touch" }}
         >
         {trendingProducts.map((product, index) => (
           <div
